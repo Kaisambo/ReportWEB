@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аналитический отчёт по звонкам — A101</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+  <header class="hero">
+    <h1>📊 Аналитический отчёт по звонкам</h1>
+    <p class="subtitle">A101-Недвижимость · стратегический разбор массива звонков</p>
+  </header>
+
+  <main>
+    <form id="report-form" class="card" novalidate>
+
+      <!-- КЛИЕНТ -->
+      <div class="field">
+        <label for="client">Клиент <span class="required">*</span></label>
+        <select id="client" name="client" required>
+          <option value="A101-Недвижимость" selected>A101-Недвижимость</option>
+        </select>
+      </div>
+
+      <!-- ИСТОЧНИК ДАННЫХ -->
+      <div class="field">
+        <label for="source">Источник данных <span class="required">*</span></label>
+        <div class="radio-group">
+          <label class="radio">
+            <input type="radio" name="source" value="Из архива" checked>
+            <span>📚 Из архива (Google Sheet)</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="source" value="Загрузить файл">
+            <span>📤 Загрузить файл .txt</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- ПЕРИОД -->
+      <div class="row">
+        <div class="field">
+          <label for="periodStart">Период с</label>
+          <input type="date" id="periodStart" name="periodStart">
+        </div>
+        <div class="field">
+          <label for="periodEnd">Период по</label>
+          <input type="date" id="periodEnd" name="periodEnd">
+        </div>
+      </div>
+
+      <!-- СОТРУДНИК -->
+      <div class="field">
+        <label for="employee">Сотрудник</label>
+        <input type="text" id="employee" name="employee" placeholder="Все сотрудники">
+        <p class="hint">Оставьте пустым, чтобы взять всех. Для конкретного — введите ФИО точно как в Sheet.</p>
+      </div>
+
+      <!-- ФАЙЛ (показывается только в режиме «Загрузить файл») -->
+      <div class="field field--file" id="file-field" hidden>
+        <label for="transcript">Файл с транскриптами .txt <span class="required">*</span></label>
+        <input type="file" id="transcript" name="transcript" accept=".txt">
+      </div>
+
+      <hr>
+
+      <!-- TELEGRAM -->
+      <div class="tg-banner">
+        <div class="tg-banner__title">📲 Получать отчёт в Telegram?</div>
+        <p class="tg-banner__text">
+          Один раз нажмите кнопку, в Telegram нажмите Start, потом укажите ваш username здесь — отчёт будет приходить в личку.
+        </p>
+        <a id="tg-button" class="tg-button" href="#" target="_blank" rel="noopener">
+          Подключить Telegram-бот →
+        </a>
+      </div>
+
+      <div class="field">
+        <label for="telegramUsername">Telegram username</label>
+        <input type="text" id="telegramUsername" name="telegramUsername" placeholder="@your_username">
+        <p class="hint">Можно с @ или без — пробелы и регистр не имеют значения.</p>
+      </div>
+
+      <!-- ОТПРАВКА -->
+      <button type="submit" id="submit-btn" class="submit-btn">
+        <span class="submit-btn__label">Сформировать отчёт</span>
+        <span class="submit-btn__spinner" hidden></span>
+      </button>
+
+      <!-- РЕЗУЛЬТАТ -->
+      <div id="result" class="result" hidden></div>
+    </form>
+
+    <footer class="footer">
+      OrbitAI · A101 · n8n + GPT-5
+    </footer>
+  </main>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
